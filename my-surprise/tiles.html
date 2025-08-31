@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select a Surprise ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fef6e4; /* soft pastel */
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      position: relative;
+    }
+
+    /* Back button */
+    a.back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      text-decoration: none;
+      background: #ff8c42;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    a.back-btn:hover {
+      background: #e6762e;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(2, 200px);
+      grid-gap: 20px;
+    }
+
+    .tile {
+      background: #ffffff;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #070f4e;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .tile:hover {
+      background: #ffedd8;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Back button -->
+<a href="surprise.html" class="back-btn">⬅ Back</a>
+
+<div class="container">
+  <div class="tile" onclick="window.location.href='message.html'">💌 to my person</div>
+  <div class="tile" onclick="window.location.href='list.html'">🤍 10 things i love most about you</div>
+  <div class="tile" onclick="window.location.href='flowers.html'">💐 because i can't give you one yet</div>
+  <div class="tile" onclick="window.location.href='playlist.html'">💙 a little something</div>
+</div>
+</body>
+</html>

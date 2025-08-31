@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💙</title>
+<style>
+  body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #fff0f5;
+    text-align: center;
+  }
+
+  h1 {
+    color: #072543;
+    margin-bottom: 30px;
+  }
+
+  #scratch-container {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+  #overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    border-radius: 20px;
+  }
+
+  #qr {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    z-index: 1;
+  }
+
+  #instructions {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .back-button {
+    background: #ff8c42;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .back-button:hover {
+    transform: scale(1.1);
+  }
+</style>
+</head>
+<body>
+
+<h1>secret</h1>
+
+<div id="scratch-container">
+  <img id="qr" src="https://www.jotform.com/tools/qr-code?colors=foreground%3A000000%2Cbackground%3AFFFFFF&data=https%3A%2F%2Fopen.spotify.com%2Fplaylist%2F4CoCN68xSuJJ2X9PsjWLkN%3Fsi%3DPG2g-gL-Skus6CKJPE9rNg&size=512" alt="QR Code">
+  <canvas id="overlay"></canvas>
+</div>
+
+<div id="instructions">Scratch the blue area, babyy</div>
+
+<button class="back-button" onclick="window.location.href='tiles.html'">⬅ Back</button>
+
+<script>
+  const canvas = document.getElementById('overlay');
+  const qr = document.getElementById('qr');
+
+  canvas.width = qr.width;
+  canvas.height = qr.height;
+  const ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = '#1e90ff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  let isDrawing = false;
+
+  function getPos(e) {
+    const bounds = canvas.getBoundingClientRect();
+    if (e.touches) {
+      const touch = e.touches[0];
+      return { x: touch.clientX - bounds.left, y: touch.clientY - bounds.top };
+    } else {
+      return { x: e.clientX - bounds.left, y: e.clientY - bounds.top };
+    }
+  }
+
+  function scratch(e) {
+  if (!isDrawing) return;
+  const pos = getPos(e);
+  ctx.globalCompositeOperation = 'destination-out';
+  ctx.beginPath();
+  ctx.arc(pos.x, pos.y, 35, 0, Math.PI * 2); // increased radius from 15 to 35
+  ctx.fill();
+}
+
+
+  canvas.addEventListener('mousedown', () => isDrawing = true);
+  canvas.addEventListener('mouseup', () => isDrawing = false);
+  canvas.addEventListener('mouseleave', () => isDrawing = false);
+  canvas.addEventListener('mousemove', scratch);
+
+  canvas.addEventListener('touchstart', () => isDrawing = true);
+  canvas.addEventListener('touchend', () => isDrawing = false);
+  canvas.addEventListener('touchmove', scratch, { passive: false });
+</script>
+
+</body>
+</html>

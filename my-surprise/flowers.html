@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bouquet for You 💐</title>
+<style>
+  body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: #fff0f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .bouquet {
+    font-size: 15rem; /* huge bouquet! */
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .bouquet:hover {
+    transform: scale(1.1);
+  }
+
+  .note {
+    margin-top: 30px;
+    background: #ffe4e1;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 400px;
+    font-size: 1.3rem;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  a.back-btn {
+    display: inline-block;
+    margin-top: 25px;
+    text-decoration: none;
+    background: #ff8c42;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+
+  a.back-btn:hover {
+    background: #e6762e;
+  }
+</style>
+</head>
+<body>
+
+<h1>for my gorgeous girlfriend 💐</h1>
+
+<div class="bouquet" id="bouquet">💐</div>
+
+<div class="note" id="note">click the bouquet 💌</div>
+
+<a href="tiles.html" class="back-btn">⬅ Back</a>
+
+<script>
+  const notes = [
+    "you are enough, exactly as you are 🤍",
+    "you’re doing so much better than you think 🌟",
+    "i’m so proud of the strength you don’t even realize you have 💪",
+    "you’re beautiful inside and out 🌸",
+    "you bring light and warmth into my life every single day ☀️",
+    "you are deeply loved, more than words could ever say 💌",
+    "it’s okay to rest, you deserve gentleness too 🙂",
+    "your heart is pure magic, never doubt that ✨",
+    "you make the world a softer, kinder place just by being in it 🌍",
+    "i’m so lucky I get to love you, and i’ll never stop reminding you that <3"
+  ];
+
+  let current = 0;
+  const bouquet = document.getElementById('bouquet');
+  const note = document.getElementById('note');
+
+  bouquet.addEventListener('click', () => {
+    note.textContent = notes[current];
+    current = (current + 1) % notes.length;
+  });
+</script>
+
+</body>
+</html>

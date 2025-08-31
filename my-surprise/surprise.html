@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>to my person ❤️</title>
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #acdcee; /* pastel blue */
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  overflow: hidden;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.corner {
+  position: absolute;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.top-right {
+  top: 10px;
+  right: 10px;
+  animation: bounce 2s infinite alternate;
+}
+
+.bottom-left {
+  bottom: 10px;
+  left: 10px;
+  animation: bounce 3s infinite alternate-reverse;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-15px); }
+}
+
+.typing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: clamp(1.5rem, 5vw, 2rem); 
+  font-weight: bold;
+  color: #070f4e;
+  line-height: 1.5;
+  position: relative;
+  text-align: center;
+  max-width: 90vw;
+}
+
+.cursor {
+  display: inline-block;
+  width: 3px;
+  background: #ffffff;
+  animation: blink 0.7s infinite;
+  vertical-align: bottom;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Button style */
+/* Outlined button style */
+#clickButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ffffff;
+  color: #070f4e; 
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s, background 0.2s;
+}
+
+#clickButton:hover {
+  transform: scale(1.1);
+  background: #ffffff; 
+}
+
+
+</style>
+</head>
+<body>
+  <div class="typing-container">
+    <div id="line1"></div>
+    <div id="line2"></div>
+  </div>
+
+ <!-- Button with orange emoji -->
+<button id="clickButton">🍊 Click Me</button>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("clickButton").addEventListener("click", () => {
+      window.location.href = "tiles.html";
+    });
+  });
+</script>
+
+  <script>
+    const text1 = "hi baby,";
+    const text2 = "happy first monthsary! ♡";
+
+    const line1 = document.getElementById('line1');
+    const line2 = document.getElementById('line2');
+
+    // Create a single blinking cursor
+    const cursor = document.createElement('span');
+    cursor.classList.add('cursor');
+    line1.appendChild(cursor);
+
+    let i = 0;
+
+    function typeLine(line, text, callback) {
+      const typingInterval = setInterval(() => {
+        line.insertBefore(document.createTextNode(text[i]), cursor);
+        i++;
+        if (i >= text.length) {
+          clearInterval(typingInterval);
+          if (callback) callback();
+        }
+      }, 150);
+    }
+
+    typeLine(line1, text1, () => {
+      i = 0;
+      line2.appendChild(cursor);
+      typeLine(line2, text2);
+    });
+  </script>
+</body>
+</html>
